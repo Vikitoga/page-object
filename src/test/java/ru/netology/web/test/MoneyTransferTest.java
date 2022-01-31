@@ -57,11 +57,12 @@ class MoneyTransferTest {
         int amount = 13000;
         val firstCardId = DataHelper.getFirstCard().getCardID();
         val secondCardId = DataHelper.getSecondCard().getCardID();
-        val firstCardBalance = dashboardPage.getCardBalance(firstCardId) - amount;
-        val secondCardBalance = dashboardPage.getCardBalance(secondCardId) + amount;
+        val firstCardBalance = dashboardPage.getCardBalance(firstCardId);
+        val secondCardBalance = dashboardPage.getCardBalance(secondCardId);
         val transferPage = dashboardPage.depositCard(secondCardId); //Нажимаем кнопку Пополнить у второй карты
         transferPage.transferMoney(amount, DataHelper.getFirstCard());
-        assertEquals(firstCardBalance, dashboardPage.getCardBalance(firstCardId));
-        assertEquals(secondCardBalance, dashboardPage.getCardBalance(secondCardId));
+        /*assertEquals(firstCardBalance, dashboardPage.getCardBalance(firstCardId));
+        assertEquals(secondCardBalance, dashboardPage.getCardBalance(secondCardId));*/
+        transferPage.errorMessage();
     }
 }
